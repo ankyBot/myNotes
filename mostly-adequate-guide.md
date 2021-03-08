@@ -1,3 +1,4 @@
+<html>
 # Introduction
 
 [![cover](https://firebasestorage.googleapis.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-MT09zmSclnRGt38Vn0l%2Fsync%2Fc02a5ad30aef8880c3868a7bd9f2e73254d04f00.png?generation=1612779905303724&alt=media)](https://github.com/mostly-adequate/mostly-adequate-guide/tree/356da9d3c46cee3d66b2ac3b015765a09879cf0b/SUMMARY.md)
@@ -4939,3 +4940,4 @@ const unsafePerformIO = io => io.unsafePerformIO();
 
 [
   ](https://mostly-adequate.gitbook.io/mostly-adequate-guide/appendix_b/task)
+</html>
