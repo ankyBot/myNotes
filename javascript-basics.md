@@ -1,4 +1,4 @@
-#                       javscript basics
+#  JavaScript Algorithms and Data Structures  
 
 
 While HTML and CSS control the content and styling of a page, JavaScript is used to make it interactive. In the JavaScript Algorithm and Data Structures Certification, you'll learn the fundamentals of JavaScript including variables, arrays, objects, loops, and functions.
@@ -161,7 +161,11 @@ Ok, so we've learned how to remove elements from the beginning and end of arrays
 **Remove Items Using splice():**
 
 ```js
-const months = ['Jan', 'March', 'April', 'June']; months.splice(1, 0, 'Feb'); // inserts at index 1 console.log(months); // expected output: Array ["Jan", "Feb", "March", "April", "June"]  months.splice(4, 1, 'May'); // replaces 1 element at index 4 console.log(months); // expected output: Array ["Jan", "Feb", "March", "April", "May"]
+const months = ['Jan', 'March', 'April', 'June']; 
+months.splice(1, 0, 'Feb'); // inserts at index 1 
+console.log(months); // expected output: Array ["Jan", "Feb", "March", "April", "June"]  
+months.splice(4, 1, 'May'); // replaces 1 element at index 4 
+console.log(months); // expected output: Array ["Jan", "Feb", "March", "April", "May"]
 ```
 
 
@@ -173,7 +177,10 @@ The next method we will cover is slice(). Rather than modifying an array, slice(
 [read more…](https://devdocs.io/javascript/global_objects/array/slice)
 
 ```js
-let weatherConditions = ['rain', 'snow', 'sleet', 'hail', 'clear'];  let todaysWeather = weatherConditions.slice(1, 3); // todaysWeather equals ['snow', 'sleet']; // weatherConditions still equals ['rain', 'snow', 'sleet', 'hail', 'clear']
+let weatherConditions = ['rain', 'snow', 'sleet', 'hail', 'clear'];  
+let todaysWeather = weatherConditions.slice(1, 3); 
+// todaysWeather equals ['snow', 'sleet']; 
+// weatherConditions still equals ['rain', 'snow', 'sleet', 'hail', 'clear']
 ```
 
 
@@ -273,12 +280,6 @@ const elements = ['Fire', 'Air', 'Water'];  console.log(elements.join()); // exp
 
 
 
-
-
-
-
-
-
 #### **find():**
 
 
@@ -311,6 +312,43 @@ console.log(`The character at index ${index} is ${sentence.charAt(index)}`);
 
 
 
+#### **Create a Basic JavaScript Object**
+
+Think about things people see every day, like cars, shops, and birds. These are all objects: tangible things people can observe and interact with.
+
+What are some qualities of these objects? A car has wheels. Shops sell items. Birds have wings.
+
+These qualities, or properties, define what makes up an object. Note that similar objects share the same properties, but may have different values for those properties. For example, all cars have wheels, but not all cars have the same number of wheels.
+
+Objects in JavaScript are used to model real-world objects, giving them properties and behavior just like their real-world counterparts. Here's an example using these concepts to create a `duck` object:
+
+```js
+let duck = {
+  name: "Aflac",
+  numLegs: 2
+};
+```
+
+This `duck` object has two property/value pairs: a `name` of `Aflac` and a `numLegs` of 2.
+
+
+
+#### **Use Dot Notation to Access the Properties of an Object**
+
+The last challenge created an object with various properties. Now you'll see how to access the values of those properties. Here's an example:
+
+```js
+let duck = {
+  name: "Aflac",
+  numLegs: 2
+};
+console.log(duck.name);
+```
+
+Dot notation is used on the object name, `duck`, followed by the name of the property, `name`, to access the value of `Aflac`.
+
+
+
 #### **Create a Method on an Object **
 
 Objects can have a special type of property, called a method.
@@ -328,6 +366,10 @@ duck.sayName();
 ```
 
 The example adds the `sayName` method, which is a function that returns a sentence giving the name of the `duck`. Notice that the method accessed the `name` property in the return statement using `duck.name`. The next challenge will cover another way to do this.
+
+
+
+
 
 #### **Make Code More Reusable with the this Keyword**
 
@@ -350,6 +392,10 @@ let duck = {
 ```
 
 `this` is a deep topic, and the above example is only one way to use it. In the current context, `this` refers to the object that the method is associated with: `duck`. If the object's name is changed to `mallard`, it is not necessary to find all the references to `duck` in the code. It makes the code reusable and easier to read.
+
+
+
+
 
 #### **Define a Constructor Function**
 
@@ -1010,9 +1056,7 @@ duck.glide();
 
 # [Functional Programming](https://youtube.com/playlist?list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84)
 
-
-
-### IMP Method
+#### IMP Methods
 
 ####  [`array.filter`](https://devdocs.io/javascript/global_objects/array/filter)
 
@@ -1066,10 +1110,753 @@ When the functions are passed in to another function or returned from another fu
 
 
 
+#### **Use the map Method to Extract Data from an Array**
+
+So far we have learned to use pure functions to avoid side effects in a program. Also, we have seen the value in having a function only depend on its input arguments.
+
+This is only the beginning. As its name suggests, functional programming is centered around a theory of functions.
+
+It would make sense to be able to pass them as arguments to other functions, and return a function from another function. Functions are considered first class objects in JavaScript, which means they can be used like any other object. They can be saved in variables, stored in an object, or passed as function arguments.
+
+Let's start with some simple array functions, which are methods on the array object prototype. In this exercise we are looking at `Array.prototype.map()`, or more simply `map`.
+
+The `map` method iterates over each item in an array and returns a new array containing the results of calling the callback function on each element. It does this without mutating the original array.
+
+When the callback is used, it is passed three arguments. The first argument is the current element being processed. The second is the index of that element and the third is the array upon which the `map` method was called.
+
+See below for an example using the `map` method on the `users` array to return a new array containing only the names of the users as elements. For simplicity, the example only uses the first argument of the callback.
+
+```js
+const users = [
+  { name: 'John', age: 34 },
+  { name: 'Amy', age: 20 },
+  { name: 'camperCat', age: 10 }
+];
+
+const names = users.map(user => user.name);
+console.log(names);
+```
+
+The console would display the value `[ 'John', 'Amy', 'camperCat' ]`.
+
+--------
+
+The `watchList` array holds objects with information on several movies. Use `map` on `watchList` to assign a new array of objects with only `title` and `rating` keys to the `ratings` variable. The code in the editor currently uses a `for` loop to do this, so you should replace the loop functionality with your `map` expression.
+
+**Solution:**
+
+```js
+
+// Only change code below this line
+const ratings = watchList.map(item => ({
+  title: item["Title"],
+  rating: item["imdbRating"]
+}));
+// Only change code above this line
+
+console.log(rating);
+```
+
+
+
+#### **Implement map on a Prototype**
+
+As you have seen from applying `Array.prototype.map()`, or simply `map()` earlier, the `map` method returns an array of the same length as the one it was called on. It also doesn't alter the original array, as long as its callback function doesn't.
+
+In other words, `map` is a pure function, and its output depends solely on its inputs. Plus, it takes another function as its argument.
+
+You might learn a lot about the `map` method if you implement your own version of it. It is recommended you use a `for` loop or `Array.prototype.forEach()`.
+
+------
+
+Write your own `Array.prototype.myMap()`, which should behave exactly like `Array.prototype.map()`. You should not use the built-in `map` method. The `Array` instance can be accessed in the `myMap` method using `this`.
+
+```js
+// The global variable
+var s = [23, 65, 98, 5];
+
+Array.prototype.myMap = function(callback) {
+  var newArray = [];
+  // Only change code below this line
+  for(let i = 0; i < this.length; i++) {
+    newArray.push(callback(this[i]));
+  }
+  // Only change code above this line
+  return newArray;
+};
+
+var new_s = s.myMap(function(item) {
+  return item * 2;
+});
+```
+
+
+
+#### **Use the filter Method to Extract Data from an Array**
+
+Another useful array function is `Array.prototype.filter()`, or simply `filter()`.
+
+`filter` calls a function on each element of an array and returns a new array containing only the elements for which that function returns `true`. In other words, it filters the array, based on the function passed to it. Like `map`, it does this without needing to modify the original array.
+
+The callback function accepts three arguments. The first argument is the current element being processed. The second is the index of that element and the third is the array upon which the `filter` method was called.
+
+See below for an example using the `filter` method on the `users` array to return a new array containing only the users under the age of 30. For simplicity, the example only uses the first argument of the callback.
+
+```js
+const users = [
+  { name: 'John', age: 34 },
+  { name: 'Amy', age: 20 },
+  { name: 'camperCat', age: 10 }
+];
+
+const usersUnder30 = users.filter(user => user.age < 30);
+console.log(usersUnder30); 
+```
+
+The console would display the value `[ { name: 'Amy', age: 20 }, { name: 'camperCat', age: 10 } ]`.
+
+------
+
+The variable `watchList` holds an array of objects with information on several movies. Use a combination of `filter` and `map` on `watchList` to assign a new array of objects with only `title` and `rating` keys. The new array should only include objects where `imdbRating` is greater than or equal to 8.0. Note that the `rating` values are saved as strings in the object and you may need to convert them into numbers to perform mathematical operations on them.
+
+**Solution: **
+
+```js
+
+// Only change code below this line
+var finalArray = watchList.filter(function(num) {
+  return num["imdbRating"] > 8;
+});
+
+var filteredList = finalArray.map(val => ({
+  title: val["Title"],
+  rating: val["imdbRating"]
+}))
+// Only change code above this line
+
+console.log(filteredList);
+```
+
+
+
+#### **Implement the filter Method on a Prototype**
+
+You might learn a lot about the `filter` method if you implement your own version of it. It is recommended you use a `for` loop or `Array.prototype.forEach()`.
+
+------
+
+Write your own `Array.prototype.myFilter()`, which should behave exactly like `Array.prototype.filter()`. You should not use the built-in `filter` method. The `Array` instance can be accessed in the `myFilter` method using `this`.
+
+**Solution:**
+
+```js
+// The global variable
+var s = [23, 65, 98, 5];
+
+Array.prototype.myFilter = function(callback) {
+  // Only change code below this line
+  var newArray = [];
+  for(let i = 0; i < this.length; i++) {
+    if(callback(this[i]) == true) {
+      newArray.push(this[i]);
+    }
+  }
+  // Only change code above this line
+  return newArray;
+};
+
+var new_s = s.myFilter(function(item) {
+  return item % 2 === 1;
+});
+```
+
+
+
+#### **Return Part of an Array Using the `slice` Method**
+
+The `slice` method returns a copy of certain elements of an array. It can take two arguments, the first gives the index of where to begin the slice, the second is the index for where to end the slice (and it's non-inclusive). If the arguments are not provided, the default is to start at the beginning of the array through the end, which is an easy way to make a copy of the entire array. The `slice` method does not mutate the original array, but returns a new one.
+
+Here's an example:
+
+```js
+var arr = ["Cat", "Dog", "Tiger", "Zebra"];
+var newArray = arr.slice(1, 3);
+```
+
+`newArray` would have the value `["Dog", "Tiger"]`.
+
+------
+
+Use the `slice` method in the `sliceArray` function to return part of the `anim` array given the provided `beginSlice` and `endSlice` indices. The function should return an array.
+
+```js
+function sliceArray(anim, beginSlice, endSlice) {
+  // Only change code below this line
+return anim.slice(beginSlice, endSlice);
+
+  // Only change code above this line
+}
+var inputAnim = ["Cat", "Dog", "Tiger", "Zebra", "Ant"];
+sliceArray(inputAnim, 1, 3);
+```
+
+
+
+ #### **Remove Elements from an Array Using `slice` Instead of `splice`**
+
+A common pattern while working with arrays is when you want to remove items and keep the rest of the array. JavaScript offers the `splice` method for this, which takes arguments for the index of where to start removing items, then the number of items to remove. If the second argument is not provided, the default is to remove items through the end. However, the `splice` method mutates the original array it is called on. Here's an example:
+
+```js
+var cities = ["Chicago", "Delhi", "Islamabad", "London", "Berlin"];
+cities.splice(3, 1);
+```
+
+Here `splice` returns the string `London` and deletes it from the cities array. `cities` will have the value `["Chicago", "Delhi", "Islamabad", "Berlin"]`.
+
+As we saw in the last challenge, the `slice` method does not mutate the original array, but returns a new one which can be saved into a variable. Recall that the `slice` method takes two arguments for the indices to begin and end the slice (the end is non-inclusive), and returns those items in a new array. Using the `slice` method instead of `splice` helps to avoid any array-mutating side effects.
+
+------
+
+Rewrite the function `nonMutatingSplice` by using `slice` instead of `splice`. It should limit the provided `cities` array to a length of 3, and return a new array with only the first three items.
+
+Do not mutate the original array provided to the function.
+
+**Solution:**
+
+```js
+function nonMutatingSplice(cities) {
+  // Only change code below this line
+  return cities.slice(0, 3);
+
+  // Only change code above this line
+}
+var inputCities = ["Chicago", "Delhi", "Islamabad", "London", "Berlin"];
+console.log(nonMutatingSplice(inputCities));
+```
+
+
+
+#### **Combine Two Arrays Using the `concat` Method**
+
+Concatenation means to join items end to end. JavaScript offers the `concat` method for both strings and arrays that work in the same way. For arrays, the method is called on one, then another array is provided as the argument to `concat`, which is added to the end of the first array. It returns a new array and does not mutate either of the original arrays. Here's an example:
+
+```js
+[1, 2, 3].concat([4, 5, 6]);
+```
+
+The returned array would be `[1, 2, 3, 4, 5, 6]`.
+
+------
+
+Use the `concat` method in the `nonMutatingConcat` function to concatenate `attach` to the end of `original`. The function should return the concatenated array.
+
+**Soluation:**
+
+```js
+function nonMutatingConcat(original, attach) {
+  // Only change code below this line
+  return original.concat(attach);
+
+  // Only change code above this line
+}
+var first = [1, 2, 3];
+var second = [4, 5];
+console.log(nonMutatingConcat(first, second));
+```
+
+
+
+#### **Add Elements to the End of an Array Using concat Instead of push**
+
+Functional programming is all about creating and using non-mutating functions.
+
+The last challenge introduced the `concat` method as a way to combine arrays into a new one without mutating the original arrays. Compare `concat` to the `push` method. `push` adds an item to the end of the same array it is called on, which mutates that array. Here's an example:
+
+```js
+var arr = [1, 2, 3];
+arr.push([4, 5, 6]);
+```
+
+`arr` would have a modified value of `[1, 2, 3, [4, 5, 6]]`, which is not the functional programming way.
+
+`concat` offers a way to add new items to the end of an array without any mutating side effects.
+
+------
+
+Change the `nonMutatingPush` function so it uses `concat` to add `newItem` to the end of `original` instead of `push`. The function should return an array.
+
+```js
+function nonMutatingPush(original, newItem) {
+  // Only change code below this line
+  return original.concat(newItem);
+
+  // Only change code above this line
+}
+var first = [1, 2, 3];
+var second = [4, 5];
+nonMutatingPush(first, second);
+```
+
+
+
+#### **Use the reduce Method to Analyze Data**
+
+`Array.prototype.reduce()`, or simply `reduce()`, is the most general of all array operations in JavaScript. You can solve almost any array processing problem using the `reduce` method.
+
+The `reduce` method allows for more general forms of array processing, and it's possible to show that both `filter` and `map` can be derived as special applications of `reduce`. The `reduce` method iterates over each item in an array and returns a single value (i.e. string, number, object, array). This is achieved via a callback function that is called on each iteration.
+
+The callback function accepts four arguments. The first argument is known as the accumulator, which gets assigned the return value of the callback function from the previous iteration, the second is the current element being processed, the third is the index of that element and the fourth is the array upon which `reduce` is called.
+
+In addition to the callback function, `reduce` has an additional parameter which takes an initial value for the accumulator. If this second parameter is not used, then the first iteration is skipped and the second iteration gets passed the first element of the array as the accumulator.
+
+See below for an example using `reduce` on the `users` array to return the sum of all the users' ages. For simplicity, the example only uses the first and second arguments.
+
+```js
+const users = [
+  { name: 'John', age: 34 },
+  { name: 'Amy', age: 20 },
+  { name: 'camperCat', age: 10 }
+];
+
+const sumOfAges = users.reduce((sum, user) => sum + user.age, 0);
+console.log(sumOfAges);
+```
+
+The console would display the value `64`.
+
+In another example, see how an object can be returned containing the names of the users as properties with their ages as values.
+
+```js
+const users = [
+  { name: 'John', age: 34 },
+  { name: 'Amy', age: 20 },
+  { name: 'camperCat', age: 10 }
+];
+
+const usersObj = users.reduce((obj, user) => {
+  obj[user.name] = user.age;
+  return obj;
+}, {});
+console.log(usersObj);
+```
+
+The console would display the value `{ John: 34, Amy: 20, camperCat: 10 }`.
+
+------
+
+The variable `watchList` holds an array of objects with information on several movies. Use `reduce` to find the average IMDB rating of the movies directed by `Christopher Nolan`. Recall from prior challenges how to `filter` data and `map` over it to pull what you need. You may need to create other variables, and return the average rating from `getRating` function. Note that the rating values are saved as strings in the object and need to be converted into numbers before they are used in any mathematical operations.
+
+**Solution: **
+
+```js
+let averageRating = watchList.filter(function(val) {
+  return val.Director == "Christopher Nolan";
+})
+.map(function(val1) {
+  return Number(val1.imdbRating);
+})
+.reduce(function(val, ratings) {
+ return val + ratings
+})
+/watchList.filter(function(film) {
+  return film.Director == "Christopher Nolan";
+})
+.length;
+  // Only change code above this line
+  
+  return averageRating;
+}
+console.log(getRating(watchList));
+```
+
+
+
+
+
+#### **Use Higher-Order Functions map, filter, or reduce to Solve a Complex Problem**
+
+Now that you have worked through a few challenges using higher-order functions like `map()`, `filter()`, and `reduce()`, you now get to apply them to solve a more complex challenge.
+
+------
+
+We have defined a function named `squareList`. You need to complete the code for the `squareList` function using any combination of `map()`, `filter()`, and `reduce()` so that it returns a new array containing only the square of *only* the positive integers (decimal numbers are not integers) when an array of real numbers is passed to it. An example of an array containing only real numbers is `[-3, 4.8, 5, 3, -3.2]`.
+
+**Note:** Your function should not use any kind of `for` or `while` loops or the `forEach()` function.
+
+**Solution:**
+
+```js
+const squareList = arr => {
+  // Only change code below this line
+  return arr.filter(function(val) {
+    return Number.isInteger(val) == true & val > 0;
+  })
+  .map(function(val) {
+    return val * val;
+  });
+  // Only change code above this line
+};
+
+const squaredIntegers = squareList([-3, 4.8, 5, 3, -3.2]);
+console.log(squaredIntegers);
+```
+
+
+
+#### **Sort an Array Alphabetically using the sort Method**
+
+The `sort` method sorts the elements of an array according to the callback function.
+
+For example:
+
+```js
+function ascendingOrder(arr) {
+  return arr.sort(function(a, b) {
+    return a - b;
+  });
+}
+ascendingOrder([1, 5, 2, 3, 4]);
+```
+
+This would return the value `[1, 2, 3, 4, 5]`.
+
+```js
+function reverseAlpha(arr) {
+  return arr.sort(function(a, b) {
+    return a === b ? 0 : a < b ? 1 : -1;
+  });
+}
+reverseAlpha(['l', 'h', 'z', 'b', 's']);
+```
+
+This would return the value `['z', 's', 'l', 'h', 'b']`.
+
+JavaScript's default sorting method is by string Unicode point value, which may return unexpected results. Therefore, it is encouraged to provide a callback function to specify how to sort the array items. When such a callback function, normally called `compareFunction`, is supplied, the array elements are sorted according to the return value of the `compareFunction`: If `compareFunction(a,b)` returns a value less than 0 for two elements `a` and `b`, then `a` will come before `b`. If `compareFunction(a,b)` returns a value greater than 0 for two elements `a` and `b`, then `b` will come before `a`. If `compareFunction(a,b)` returns a value equal to 0 for two elements `a` and `b`, then `a` and `b` will remain unchanged.
+
+------
+
+Use the `sort` method in the `alphabeticalOrder` function to sort the elements of `arr` in alphabetical order.
+
+**Solution:**
+
+```js
+function alphabeticalOrder(arr) {
+  // Only change code below this line
+  return arr.sort(function(a, b) {
+    return a === b ? 0 : a < b ? -1 : 1;
+  });
+  // Only change code above this line
+}
+console.log(alphabeticalOrder(["a", "d", "c", "a", "z", "g"]));
+```
+
+
+
+#### **Return a Sorted Array Without Changing the Original Array**
+
+A side effect of the `sort` method is that it changes the order of the elements in the original array. In other words, it mutates the array in place. One way to avoid this is to first concatenate an empty array to the one being sorted (remember that `slice` and `concat` return a new array), then run the `sort` method.
+
+------
+
+Use the `sort` method in the `nonMutatingSort` function to sort the elements of an array in ascending order. The function should return a new array, and not mutate the `globalArray` variable.
+
+**Solution:**
+
+```js
+var globalArray = [5, 6, 3, 2, 9];
+function nonMutatingSort(arr) {
+  // Only change code below this line
+  let myArr = arr.slice();
+  myArr.sort(function(a, b) {
+    return a === b ? 0 : a < b ? -1 : 1;
+  });
+  return myArr;
+  // Only change code above this line
+}
+console.log(nonMutatingSort(globalArray));
+```
+
+
+
+
+
+#### **Split a String into an Array Using the `split ` Method**
+
+The `split` method splits a string into an array of strings. It takes an argument for the delimiter, which can be a character to use to break up the string or a regular expression. For example, if the delimiter is a space, you get an array of words, and if the delimiter is an empty string, you get an array of each character in the string.
+
+Here are two examples that split one string by spaces, then another by digits using a regular expression:
+
+```js
+var str = "Hello World";
+var bySpace = str.split(" ");
+
+var otherString = "How9are7you2today";
+var byDigits = otherString.split(/\d/);
+```
+
+`bySpace` would have the value `["Hello", "World"]` and `byDigits` would have the value `["How", "are", "you", "today"]`.
+
+Since strings are immutable, the `split` method makes it easier to work with them.
+
+------
+
+Use the `split` method inside the `splitify` function to split `str` into an array of words. The function should return the array. Note that the words are not always separated by spaces, and the array should not contain punctuation.
+
+**Solution:**
+
+```js
+function splitify(str) {
+  // Only change code below this line
+  return str.split(/\W/);
+
+  // Only change code above this line
+}
+console.log(splitify("Hello World,I-am code"));
+```
+
+
+
+#### **Combine an Array into a String Using the join Method**
+
+The `join` method is used to join the elements of an array together to create a string. It takes an argument for the delimiter that is used to separate the array elements in the string.
+
+Here's an example:
+
+```js
+var arr = ["Hello", "World"];
+var str = arr.join(" ");
+```
+
+`str` would have a value of the string `Hello World`.
+
+------
+
+Use the `join` method (among others) inside the `sentensify` function to make a sentence from the words in the string `str`. The function should return a string. For example, `I-like-Star-Wars` would be converted to `I like Star Wars`. For this challenge, do not use the `replace` method.
+
+**Solution:**
+
+```js
+function sentensify(str) {
+  // Only change code below this line
+  let myArr = str.split(/\W/);
+  console.log(myArr)
+  return myArr.join(" ");
+  // Only change code above this line
+}
+console.log(sentensify("May-the-force-be-with-you"));
+```
+
+
+
+
+
+#### **Apply Functional Programming to Convert Strings to URL Slugs**
+
+The last several challenges covered a number of useful array and string methods that follow functional programming principles. We've also learned about `reduce`, which is a powerful method used to reduce problems to simpler forms. From computing averages to sorting, any array operation can be achieved by applying it. Recall that `map` and `filter` are special cases of `reduce`.
+
+Let's combine what we've learned to solve a practical problem.
+
+Many content management sites (CMS) have the titles of a post added to part of the URL for simple bookmarking purposes. For example, if you write a Medium post titled `Stop Using Reduce`, it's likely the URL would have some form of the title string in it (`.../stop-using-reduce`). You may have already noticed this on the freeCodeCamp site.
+
+------
+
+Fill in the `urlSlug` function so it converts a string `title` and returns the hyphenated version for the URL. You can use any of the methods covered in this section, and don't use `replace`. Here are the requirements:
+
+The input is a string with spaces and title-cased words
+
+The output is a string with the spaces between words replaced by a hyphen (`-`)
+
+The output should be all lower-cased letters
+
+The output should not have any spaces
+
+**Solution:**
+
+```js
+// Only change code below this line
+function urlSlug(title) {
+return title
+.toLowerCase()
+.split(" ")
+.filter(subStr => subStr !== "")
+.join("-");  
+}
+// Only change code above this line
+console.log(urlSlug(" Winter Is  Coming"));
+```
+
+
+
+#### **Use the every Method to Check that Every Element in an Array Meets a Criteria**
+
+The `every` method works with arrays to check if *every* element passes a particular test. It returns a Boolean value - `true` if all values meet the criteria, `false` if not.
+
+For example, the following code would check if every element in the `numbers` array is less than 10:
+
+```js
+var numbers = [1, 5, 8, 0, 10, 11];
+numbers.every(function(currentValue) {
+  return currentValue < 10;
+});
+```
+
+The `every` method would return `false` here.
+
+------
+
+Use the `every` method inside the `checkPositive` function to check if every element in `arr` is positive. The function should return a Boolean value.
+
+**Soluation:**
+
+```js
+function checkPositive(arr) {
+  // Only change code below this line
+return arr.every(val => val >= 0);
+  // Only change code above this line
+}
+checkPositive([1, 2, 3, -4, 5]);
+```
+
+
+
+
+
+#### **Use the some Method to Check that Any Elements in an Array Meet a Criteria**
+
+The `some` method works with arrays to check if *any* element passes a particular test. It returns a Boolean value - `true` if any of the values meet the criteria, `false` if not.
+
+For example, the following code would check if any element in the `numbers` array is less than 10:
+
+```js
+var numbers = [10, 50, 8, 220, 110, 11];
+numbers.some(function(currentValue) {
+  return currentValue < 10;
+});
+```
+
+The `some` method would return `true`.
+
+------
+
+Use the `some` method inside the `checkPositive` function to check if any element in `arr` is positive. The function should return a Boolean value.
+
+**Soluation:**
+
+```js
+function checkPositive(arr) {
+  // Only change code below this line
+return arr.some(val => val >= 0);
+  // Only change code above this line
+}
+checkPositive([1, 2, 3, -4, 5]);
+```
+
+
+
+
+
+#### **Introduction to Currying and Partial Application**
+
+The arity of a function is the number of arguments it requires. Currying a function means to convert a function of N arity into N functions of arity 1.
+
+In other words, it restructures a function so it takes one argument, then returns another function that takes the next argument, and so on.
+
+Here's an example:
+
+```js
+function unCurried(x, y) {
+  return x + y;
+}
+
+function curried(x) {
+  return function(y) {
+    return x + y;
+  }
+}
+
+const curried = x => y => x + y
+
+curried(1)(2)
+```
+
+`curried(1)(2)` would return `3`.
+
+This is useful in your program if you can't supply all the arguments to a function at one time. You can save each function call into a variable, which will hold the returned function reference that takes the next argument when it's available. Here's an example using the curried function in the example above:
+
+```js
+var funcForY = curried(1);
+console.log(funcForY(2)); // 3
+```
+
+Similarly, partial application can be described as applying a few arguments to a function at a time and returning another function that is applied to more arguments. Here's an example:
+
+```js
+function impartial(x, y, z) {
+  return x + y + z;
+}
+var partialFn = impartial.bind(this, 1, 2);
+partialFn(10); // 13
+```
+
+------
+
+Fill in the body of the `add` function so it uses currying to add parameters `x`, `y`, and `z`.
+
+**Solution:**
+
+```js
+function add(x) {
+  // Only change code below this line
+  return function add(y) {
+    return function add(z) {
+      return x + y + z;
+    }
+  }
+  // Only change code above this line
+}
+console.log(add(10)(20)(30));
+```
 
 
 
 
 
 
- 
+
+
+
+
+
+
+
+# [Intermediate Algorithm Scripting#](https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/#intermediate-algorithm-scripting)
+
+Now that you know the basics of algorithmic thinking, along with OOP and Functional Programming, test your skills with the Intermediate Algorithm Scripting challenges.
+
+
+
+
+
+#### **Sum All Numbers in a Range**
+
+We'll pass you an array of two numbers. Return the sum of those two numbers plus the sum of all the numbers between them. The lowest number will not always come first.
+
+For example, `sumAll([4,1])` should return `10` because sum of all the numbers between 1 and 4 (both inclusive) is `10`.
+
+**Soluation:**
+
+```js
+function sumAll(arr) {
+  let myArr = arr.sort((a, b) => a -b);
+  let result = 0;
+  for(let i = myArr[0]; i <= myArr[1]; i++) {
+    result += i;
+  }
+  return result;
+}
+
+sumAll([1, 4]);
+```
+
+
+
