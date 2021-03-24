@@ -27,7 +27,7 @@ if (num1 === num2) {
 
 Today, let’s look at three different ways to convert a string into a number.
 
-#### `parseInt()` [#](https://gomakethings.com/converting-strings-to-numbers-with-vanilla-javascript/#parseint)
+#### `parseInt()` ( )
 
 The `parseInt()` method converts a string into an integer (a whole number).
 
@@ -39,7 +39,7 @@ var integer = parseInt(text, 10);
 // returns 42
 ```
 
-#### `parseFloat()` [#](https://gomakethings.com/converting-strings-to-numbers-with-vanilla-javascript/#parsefloat)
+#### `parseFloat()`  
 
 The `parseFloat()` method converts a string into a point number (a number with decimal points). You can even pass in strings with random text in them.
 
@@ -49,7 +49,7 @@ var pointNum = parseFloat(text);
 // returns 3.14
 ```
 
-#### `Number()` [#](https://gomakethings.com/converting-strings-to-numbers-with-vanilla-javascript/#number)
+#### `Number()` 
 
 The `Number()` method converts a string to a number.
 
