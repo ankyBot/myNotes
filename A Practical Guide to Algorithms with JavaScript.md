@@ -2,7 +2,7 @@
 
 
 
-## introducing-space-time-complexity
+## **Space** and Time complexity
 
 ### **Time** Complexity
 
@@ -14,7 +14,8 @@ How much ***memory*** is used?
 
 
 
-## Complexity in general
+
+### Complexity in general
 
 | Big-O, name       | # of Operations | Algorithm                        |
 | ----------------- | --------------- | -------------------------------- |
@@ -24,7 +25,7 @@ How much ***memory*** is used?
 
 
 
-##  Complexity of Common Operations
+###  Complexity of Common Operations
 
 | Complexity | Operation                                      |
 | ---------- | ---------------------------------------------- |
@@ -37,11 +38,54 @@ How much ***memory*** is used?
 
 
 
+
+
+
+
+
+
 ##  Optimization with Caching
 
+### Unique sort
+
 ```js
-// Task 1: Write a function, times10, that takes an argument, n, and multiples n times 10
-// a simple multiplication fn
+//Transforming the simple sorting algorithm into a unique sort. 
+// It's not returning any duplicate values in the sorted array.
+
+//input: [1,5,2,1] => output: [1,2,5]
+//input: [4,2,2,3,2,2,2] => output: [2,3,4]
+
+const uniqSort = function(arr) {
+    const breadcrumbs = {};
+    let myResult = [];
+
+    for(let i = 0; i < arr.length; i++) {
+
+      if(!breadcrumbs[arr[i]]) {
+        myResult.push(arr[i]);
+        breadcrumbs[arr[i]] = true;
+      }
+    }
+    return myResult.sort((a, b) => a - b);
+};
+
+uniqSort([4,2,2,3,2,2,2]); // => [2,3,4]
+```
+
+
+
+### Memoization
+
+In computing, **memoization** or memoisation is an optimization technique used primarily to speed up computer programs by storing the results of expensive function calls and returning the cached result when the same inputs occur again.
+
+
+
+### Basic Memoization Soluation
+
+```js
+// simple multiplication fn Memoization fn
+// A function, times10, that takes an argument, n, and multiples n times 10
+
 const times10 = (n) => {
   let myVal = 0;
   for(let i = 1; i <= n; i++) {
@@ -53,10 +97,8 @@ const times10 = (n) => {
 console.log('~~~~~~~~~~~~~~TASK 1~~~~~~~~~~~~~~');
 console.log('times10 returns:', times10(9));
 
-// Task 2: Use an object to cache the results of your times10 function. 
-// protip 1: Create a function that checks if the value for n has been calculated before.
-// protip 2: If the value for n has not been calculated, calculate and then save the result in the cache object.
-
+// Here we are using an object to cache the results of our times10 function. 
+ 
 const cache = {};
 
 const memoTimes10 = (n) => {
@@ -72,58 +114,72 @@ const memoTimes10 = (n) => {
 console.log('~~~~~~~~~~~~~~TASK 2~~~~~~~~~~~~~~');
 console.log('Task 2 calculated value:', memoTimes10(9));	// calculated
 console.log('Task 2 cached value:', memoTimes10(9));	// cached
+```
 
 
 
+### Memoization with closure
 
+```js
+const times10 = (n) => (n * 10);
 
+// Cleaning up our global scope by moving our cache inside our function.
 
-
-
-//👇👇👇👇👇👇[ My Other methode, maybe😅 ]👇👇👇👇👇👇👇
-
-
-// Task 1: Write a function, times10, that takes an argument, n, and multiples n times 10
-// a simple multiplication fn
-/*
-const times10 = (n) => {
-  let myVal = 0;
-  for(let i = 1; i <= n; i++) {
-    myVal += 10;
-  }
-  return myVal;
+const memoizedClosureTimes10 = () => {
+  let cache = {};
+  return (n) => {
+    if(n in cache) {
+      return cache[n];
+    } else {
+      let result = times10(n);
+      cache[n] = result;
+      return result;
+    }
+  };
 };
 
-console.log('~~~~~~~~~~~~~~TASK 1~~~~~~~~~~~~~~');
-console.log('times10 returns:', times10(9));
-*/
-
-// Task 2: Use an object to cache the results of your times10 function. 
-// protip 1: Create a function that checks if the value for n has been calculated before.
-// protip 2: If the value for n has not been calculated, calculate and then save the result in the cache object.
-
-/*
-const cache = {};
-
-const memoTimes10 = (n) => {
-  if(!cache[n]) {
-    let myVal = 0;
-    for(let i = 1; i <= n; i++) {
-      myVal += 10;
-    }
-    cache[n] = myVal;
-    return myVal;
-  } else {
-    return cache[n];
-  }
+const memoClosureTimes10 = memoizedClosureTimes10();
+console.log('~~~~~~~~~~~~~~TASK 3~~~~~~~~~~~~~~');
+try {
+  console.log('Task 3 calculated value:', memoClosureTimes10(9));	// calculated
+  console.log('Task 3 cached value:', memoClosureTimes10(9));	// cached
+} catch(e) {
+  console.error('Task 3:', e);
 }
-*/
-
-//console.log('~~~~~~~~~~~~~~TASK 2~~~~~~~~~~~~~~');
-//console.log('Task 2 calculated value:', memoTimes10(9));	// calculated
-//console.log('Task 2 cached value:', memoTimes10(9));	// cached
-
-
-
 ```
+
+
+
+### Generic Memoization function
+
+```js
+const times10 = (n) => (n * 10);
+
+// Making our memo function generic and accept the times10 function as a callback rather than defining the n * 10 logic inside the if/else or pulling it in from the global scope.
+
+const memoize = (cb) => {
+  let cache = {};
+  return (n) => {
+    if(n in cache) {
+      return cache[n];
+    } else{
+      let result = cb(n);
+      cache[n] = result;
+      return result;
+    }
+  };
+};
+
+// returned function from memoizedAdd
+const memoizedTimes10 = memoize(times10);
+console.log('~~~~~~~~~~~~~~TASK 4~~~~~~~~~~~~~~');
+try {
+  console.log('Task 4 calculated value:', memoizedTimes10(9));	// calculated
+  console.log('Task 4 cached value:', memoizedTimes10(9));	// cached
+} catch(e) {
+  console.error('Task 4:', e)
+}
+```
+
+
 
