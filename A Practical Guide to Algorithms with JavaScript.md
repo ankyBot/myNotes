@@ -183,3 +183,109 @@ try {
 
 
 
+## Recursion
+
+Recursion is simply when a function calls itself; however it doesn't stop there.
+
+### Call stack
+
+
+
+
+
+### Looping with recursion 
+
+```js
+const loopNTimes = (n) => {
+
+  console.log('n ===', n);
+
+  if (n <= 1) {
+      return 'complete';
+  }
+  return loopNTimes(n-1);
+};
+
+loopNTimes(3);
+```
+
+
+
+### Factorial with a loop vs recursion
+
+```js
+//Factorial using loop
+function computeFactorial(num) {
+  var result = 1;
+
+  for(var i = 2; i <= num; i++) {
+    result *= i;
+  }
+
+  return result;
+}
+
+computeFactorial(5);
+
+//Factorial using recursion
+function factorial(val) {
+   if(val < 1) {
+       return 1;
+   } else {
+       return val * factorial(val - 1);
+   }
+}
+
+factorial(5);
+```
+
+
+
+## **Common pattern for recursion**
+
+### wrapper function
+
+In programming languages such as JavaScript, a wrapper is a function that is intended to call one or more other functions, sometimes purely for convenience, and sometimes adapting them to do a slightly different task in the process.
+
+
+
+### Accumulators
+
+
+
+### Recursive factorial and memoize solution
+
+```js
+
+let memoize = (val) => {
+  let cache = {};
+  
+  return (n) => {
+    if(n in cache) {
+      console.log("it was cached")
+      return cache[n];
+    } else {
+      let result = val(n);
+      cache[n] = result;
+      return result;
+    }
+  };
+};
+
+function factorial(x) {
+  if(x === 0) {
+    return 1;
+  } else {
+    return x * factorial(x -1)
+  }
+}
+
+let memoFactorial = memoize(factorial);
+
+console.log(memoFactorial(5));
+```
+
+
+
+
+
