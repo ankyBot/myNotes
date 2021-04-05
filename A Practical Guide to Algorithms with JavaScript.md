@@ -241,7 +241,7 @@ factorial(5);
 
 
 
-## **Common pattern for recursion**
+#### **Common pattern for recursion**
 
 ### wrapper function
 
@@ -286,6 +286,156 @@ console.log(memoFactorial(5));
 ```
 
 
+
+
+
+## Divide and Conquer
+
+A **divide and conquer algorithm** is a strategy of solving a large problem by
+
+1. breaking the problem into smaller sub-problems
+2. solving the sub-problems, and
+3. combining them to get the desired output.
+
+
+
+### linear search
+
+```js
+function linearSearch(list, item) {
+let result = -1;
+
+  for(let i = 0; i < list.length; i++) {
+    if(list[i] === item) {
+      result = i;
+    }
+  }
+return result;
+}
+
+console.log(linearSearch([2,6,7,90,103, 100, 90], 90));
+```
+
+
+
+### Binary search
+
+```js
+function binarySearch(list, item) {
+  let min = 0;
+  let max = list.length - 1;
+  let guess;
+  while(min <= max) {
+    guess = Math.floor((min + max) / 2)
+    if(list[guess] === item) {
+      return guess;
+    } else{
+      if(list[guess] < item) {
+        min = guess + 1;
+      } else {
+        max = guess - 1;
+      }
+    }
+  }
+return -1;
+}
+
+binarySearch([2,6,7,8,90,103], 90);
+```
+
+
+
+
+
+## Sorting
+## 1. *Naive Sorts*
+
+
+### Bubble sort
+
+
+```js
+function swap(array, i, j) {
+  let temp = array[i];
+  array[i] = array[j];
+  array[j] = temp;
+}
+
+function bubbleSort(array) {
+  for(let i = 0; i < array.length; i++) {
+    for(j = 1; j < array.length; j++) {
+      if(array[j - 1] > array[j]) {
+        swap(array, j-1, j)
+      }
+    }
+  }
+  return array;
+}
+
+let myArr = [9, 1, 4, 8, 7,11, 13, 6, 2];
+console.log(bubbleSort(myArr));
+```
+
+
+
+## 2. *Divide & Conquer Sorts*
+
+
+
+
+
+###  Merge sort
+
+```js
+function mergeSort (arr) {
+  if (arr.length === 1) {
+    // return once we hit an array with a single item
+    return arr
+  }
+
+  const middle = Math.floor(arr.length / 2) // get the middle item of the array rounded down
+  const left = arr.slice(0, middle) // items on the left side
+  const right = arr.slice(middle) // items on the right side
+  const sortedLeft = mergeSort(left);
+  const sortedRight = mergeSort(right);
+  return merge(sortedLeft, sortedRight);
+}
+
+// compare the arrays item by item and return the concatenated result
+function merge (left, right) {
+  let result = []
+  let indexLeft = 0
+  let indexRight = 0
+
+  while (indexLeft < left.length && indexRight < right.length) {
+    if (left[indexLeft] < right[indexRight]) {
+      result.push(left[indexLeft])
+      indexLeft++
+    } else {
+      result.push(right[indexRight])
+      indexRight++
+    }
+  }
+
+  return result.concat(left.slice(indexLeft)).concat(right.slice(indexRight))
+}
+
+const list = [2, 5, 1, 3, 7, 2, 3, 8, 6, 3]
+console.log(mergeSort(list)) // [ 1, 2, 2, 3, 3, 3, 5, 6, 7, 8 ]
+
+```
+
+
+
+
+
+## Greedy Algorithm
+
+
+
+## Dynamic Programming
+
+**In Dynamic Programming Cache values to avoid repeated calculations**
 
 
 
